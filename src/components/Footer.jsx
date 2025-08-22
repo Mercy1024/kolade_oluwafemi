@@ -109,7 +109,7 @@ const CyberpunkFooter = () => {
               <span>System.v1.0</span>
             </div>
             <div className="neo-footer__copyright-text">
-              &copy; {new Date().getFullYear()} Otoibhi Anthony. All rights reserved.
+              &copy; {new Date().getFullYear()} Kolade Oluwafemi. All rights reserved.
             </div>
             <div className="neo-footer__made-with">
               <span>Made with</span>
