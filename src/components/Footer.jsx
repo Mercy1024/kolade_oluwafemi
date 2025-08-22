@@ -31,19 +31,19 @@ const CyberpunkFooter = () => {
   const socialLinks = [
     {
       icon: <Github size={18} />,
-      url: "https://github.com/DebrainStark",
-      label: "GitHub"
+      url: "https://github.com/Mercy1024",
+      label: "GitHub",
     },
     {
       icon: <Linkedin size={18} />,
-      url: "https://www.linkedin.com/in/otoibhi-anthony-b-eng-gnse-970049161",
-      label: "LinkedIn"
+      url: "https://www.linkedin.com/in/kolade-oluwafemi-764981249/",
+      label: "LinkedIn",
     },
     {
       icon: <Mail size={18} />,
-      url: "mailto:starkwave@outlook.com",
-      label: "Email"
-    }
+      url: "mailto:akoladeemmanuel@gmail.com",
+      label: "Email",
+    },
   ];
 
   // Footer navigation links
