@@ -179,30 +179,33 @@ const Hero = () => {
     { number: '20+', label: 'Clients_Served' }
   ], []);
   
-  const socialLinks = useMemo(() => [
-    {
-      href: 'https://github.com/DebrainStark',
-      icon: Github,
-      variant: 'github',
-      label: 'GitHub Profile',
-      target: '_blank',
-      rel: 'noopener noreferrer'
-    },
-    {
-      href: 'https://www.linkedin.com/in/otoibhi-anthony-b-eng-gnse-970049161',
-      icon: Linkedin,
-      variant: 'linkedin',
-      label: 'LinkedIn Profile',
-      target: '_blank',
-      rel: 'noopener noreferrer'
-    },
-    {
-      href: 'mailto:anuoluwaotoibhi@gmail.com',
-      icon: Mail,
-      variant: 'mail',
-      label: 'Send Email'
-    }
-  ], []);
+  const socialLinks = useMemo(
+    () => [
+      {
+        href: "https://github.com/Mercy1024",
+        icon: Github,
+        variant: "github",
+        label: "GitHub Profile",
+        target: "_blank",
+        rel: "noopener noreferrer",
+      },
+      {
+        href: "https://www.linkedin.com/in/kolade-oluwafemi-764981249/",
+        icon: Linkedin,
+        variant: "linkedin",
+        label: "LinkedIn Profile",
+        target: "_blank",
+        rel: "noopener noreferrer",
+      },
+      {
+        href: "mailto:akoladeemmanuel@gmail.com",
+        icon: Mail,
+        variant: "mail",
+        label: "Send Email",
+      },
+    ],
+    []
+  );
   
   // Event handlers
   const handleProjectsClick = useCallback((e) => {
