@@ -46,14 +46,14 @@ const CyberpunkContactSection = () => {
     {
       icon: <Mail size={20} />,
       title: "Email",
-      value: "starkwave@outlook.com",
-      link: "mailto:starkwave@outlook.com"
+      value: "akoladeemmanuel14@gmail.com",
+      link: "mailto:akoladeemmanuel14@gmail.com"
     },
     {
       icon: <Phone size={20} />,
       title: "Phone",
-      value: "+234 9077798350",
-      link: "tel:+2349077798350"
+      value: "+234 7067739481",
+      link: "tel:+2347067739481"
     },
     {
       icon: <MapPin size={20} />,
@@ -65,9 +65,9 @@ const CyberpunkContactSection = () => {
 
   // Social media links
   const socialLinks = [
-    { icon: <Github size={20} />, url: "https://github.com/DebrainStark" },
+    { icon: <Github size={20} />, url: "https://github.com/Mercy1024" },
     { icon: <Linkedin size={20} />, url: "https://www.linkedin.com/in/otoibhi-anthony-b-eng-gnse-970049161" },
-    { icon: <Twitter size={20} />, url: "https://twitter.com/yourhandle" }
+    { icon: <Twitter size={20} />, url: "https://twitter.com/KOLADE1024" }
   ];
 
   return (

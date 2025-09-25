@@ -5,7 +5,7 @@ import './about.css';
 const CyberpunkAbout = () => {
   // Skills arrays
   const actualExpertise = [
-    "React & Redux", "TypeScript", "Node.js", "MongoDB", "Express", "GraphQL"
+    "React & Redux", "Nextjs", "TypeScript", "Node.js", "MongoDB", "Express", "GraphQL"
   ];
   
   const claimedExpertise = [
@@ -160,12 +160,12 @@ const CyberpunkAbout = () => {
                         <span className="terminal-prompt">$ </span>
                         <span className="terminal-command">whoami</span>
                       </div>
-                      <div className="terminal-line terminal-output">Otoibhi Anthony</div>
+                      <div className="terminal-line terminal-output">Kolade Oluwafemi</div>
                       <div className="terminal-line">
                         <span className="terminal-prompt">$ </span>
                         <span className="terminal-command">skills --top</span>
                       </div>
-                      <div className="terminal-line terminal-output">[React, Node.js, MongoDB, TypeScript]</div>
+                      <div className="terminal-line terminal-output">[React, Node.js, Nextjs, MongoDB, TypeScript]</div>
                       <div className="terminal-line">
                         <span className="terminal-prompt">$ </span>
                         <span className="terminal-command">status</span>
@@ -310,7 +310,7 @@ const CyberpunkAbout = () => {
                       <span className="terminal-prompt">$ </span>
                       <span className="terminal-command">whoami</span>
                     </div>
-                    <div className="terminal-line terminal-output">Otoibhi Anthony</div>
+                    <div className="terminal-line terminal-output">Kolade Oluwafemi</div>
                     <div className="terminal-line">
                       <span className="terminal-prompt">$ </span>
                       <span className="terminal-command">status</span>
