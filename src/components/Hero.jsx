@@ -185,7 +185,7 @@ const Hero = () => {
 
   const stats = useMemo(
     () => [
-      { number: "5+", label: "Years_XP" },
+      { number: "2+", label: "Years_XP" },
       { number: "50+", label: "Projects_Done" },
       { number: "20+", label: "Clients_Served" },
     ],
