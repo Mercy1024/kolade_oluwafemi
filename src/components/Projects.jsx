@@ -93,6 +93,17 @@ const CyberpunkProjects = () => {
       github: "hhttps://github.com/Mercy1024/GTA-VI",
       liveDemo: "https://gta-vi-seven-fawn.vercel.app/",
     },
+
+    {
+      id: 7,
+      title: "XORA",
+      description: "SaaS Landing Page",
+      image: "/assets/images/xora.png",
+      category: "dev",
+      technologies: ["React", "React Router", "Vanilla CSS", "Vite"],
+      github: "https://github.com/Mercy1024/SaasLandingPage",
+      liveDemo: "https://saas-landing-page-5ifo.vercel.app/",
+    },
   ];
 
   useEffect(() => {
