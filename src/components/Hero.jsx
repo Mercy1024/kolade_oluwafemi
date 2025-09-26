@@ -371,7 +371,7 @@ const Hero = () => {
                 </div>
               </a>
               <a
-                href="/resume.pdf"
+                href="/KoladeOluwafemiResume.pdf"
                 className="btn-secondary"
                 download
                 onClick={handleDownloadCV}
