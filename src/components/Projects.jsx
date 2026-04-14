@@ -10,15 +10,118 @@ import {
   Rocket,
   Coffee,
   AlertTriangle,
+  ChevronLeft,
+  ChevronRight,
+  X,
 } from "lucide-react";
+
+const ImageCarousel = ({ images, title, onImageClick }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToSlide = (e, index) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex(index);
+  };
+
+  return (
+    <div className="carousel-container">
+      <div className="carousel-track" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        {images.map((img, idx) => (
+          <img
+            key={idx}
+            src={img}
+            alt={`${title} screenshot ${idx + 1}`}
+            onClick={() => onImageClick(img)}
+            style={{ cursor: 'zoom-in' }}
+          />
+        ))}
+      </div>
+      
+      {images.length > 1 && (
+        <>
+          <button className="carousel-btn prev" onClick={prevSlide} aria-label="Previous slide">
+            <ChevronLeft size={20} />
+          </button>
+          <button className="carousel-btn next" onClick={nextSlide} aria-label="Next slide">
+            <ChevronRight size={20} />
+          </button>
+          <div className="carousel-dots">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                className={`carousel-dot ${idx === currentIndex ? 'active' : ''}`}
+                onClick={(e) => goToSlide(e, idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
 const CyberpunkProjects = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [scanningPhase, setScanningPhase] = useState(0);
   const [showMessage, setShowMessage] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") setSelectedImage(null);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
   // Empty projects array - no projects to display
   const projects = [
+    {
+      id: 8,
+      title: "OYSAA — Signage & Advertisement Agency",
+      description:
+        "A full-stack government platform for the Oyo State Signage and Advertisement Agency. Digitizes the entire advertisement lifecycle — application, approval, licensing, compliance, and revenue tracking — across 6 distinct portals with role-based access control, GIS mapping, QR code enforcement, and PWA support for field officers.",
+      images: [
+        "/assets/images/oysaa-landing.png",
+        "/assets/images/oysaa-dashboard.png",
+        "/assets/images/oysaa-users.png",
+        "/assets/images/oysaa-transactions.png",
+        "/assets/images/oysaa-assets.png",
+      ],
+      category: "dev",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "MUI",
+        "Tailwind CSS",
+        "Zustand",
+        "SWR",
+        "Leaflet",
+        "Recharts",
+        "PWA",
+      ],
+      github: null,
+      liveDemo: "https://oysaa-ng.com/",
+    },
     {
       id: 1,
       title: "Eccommerce",
@@ -240,9 +343,8 @@ const CyberpunkProjects = () => {
           </button>
 
           <button
-            className={`cyber-tab ${
-              activeTab === "experimental" ? "active" : ""
-            }`}
+            className={`cyber-tab ${activeTab === "experimental" ? "active" : ""
+              }`}
             onClick={() => setActiveTab("experimental")}
           >
             <Code size={16} />
@@ -263,7 +365,20 @@ const CyberpunkProjects = () => {
             <div className="projects-grid">
               {filteredProjects?.map((project) => (
                 <div key={project.id} className="project-card">
-                  <img src={project.image} alt={project.title} />
+                  {project.images ? (
+                    <ImageCarousel
+                      images={project.images}
+                      title={project.title}
+                      onImageClick={setSelectedImage}
+                    />
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      onClick={() => setSelectedImage(project.image)}
+                      style={{ cursor: 'zoom-in' }}
+                    />
+                  )}
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
                   <div className="tech-list">
@@ -272,20 +387,24 @@ const CyberpunkProjects = () => {
                     ))}
                   </div>
                   <div className="links">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      GitHub
-                    </a>
-                    <a
-                      href={project.liveDemo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Live Demo
-                    </a>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GitHub
+                      </a>
+                    )}
+                    {project.liveDemo && (
+                      <a
+                        href={project.liveDemo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Live Demo
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
@@ -345,6 +464,18 @@ const CyberpunkProjects = () => {
             </div>
           )}
         </div>
+
+        {/* Fullscreen Lightbox */}
+        {selectedImage && (
+          <div className="lightbox-overlay" onClick={() => setSelectedImage(null)}>
+            <button className="lightbox-close" onClick={() => setSelectedImage(null)}>
+              <X size={32} />
+            </button>
+            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+              <img src={selectedImage} alt="Fullscreen preview" />
+            </div>
+          </div>
+        )}
       </div>
 
       <style jsx>{`
@@ -383,6 +514,148 @@ const CyberpunkProjects = () => {
 
         .project-card:hover img {
           filter: brightness(1);
+        }
+
+        /* Carousel Styles */
+        .carousel-container {
+          position: relative;
+          width: 100%;
+          height: 200px;
+          overflow: hidden;
+        }
+
+        .carousel-track {
+          display: flex;
+          transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          height: 100%;
+        }
+
+        .carousel-track img {
+          min-width: 100%;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          flex-shrink: 0;
+        }
+
+        .carousel-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(0, 0, 0, 0.6);
+          color: #06ffa5;
+          border: 1px solid rgba(6, 255, 165, 0.3);
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 10;
+          transition: all 0.2s ease;
+          opacity: 0;
+        }
+
+        .project-card:hover .carousel-btn {
+          opacity: 1;
+        }
+
+        .carousel-btn:hover {
+          background: rgba(6, 255, 165, 0.2);
+          border-color: #06ffa5;
+          transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+
+        .carousel-dots {
+          position: absolute;
+          bottom: 15px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 6px;
+          z-index: 10;
+        }
+
+        .carousel-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.3);
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .carousel-dot.active {
+          background: #06ffa5;
+          transform: scale(1.2);
+          box-shadow: 0 0 10px rgba(6, 255, 165, 0.5);
+        }
+
+        /* Lightbox Styles */
+        .lightbox-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.9);
+          backdrop-filter: blur(10px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          animation: fadeIn 0.3s ease;
+          cursor: zoom-out;
+        }
+
+        .lightbox-close {
+          position: absolute;
+          top: 30px;
+          right: 30px;
+          background: none;
+          border: none;
+          color: #06ffa5;
+          cursor: pointer;
+          transition: transform 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .lightbox-close:hover {
+          transform: scale(1.2) rotate(90deg);
+        }
+
+        .lightbox-content {
+          max-width: 90%;
+          max-height: 90%;
+          position: relative;
+          cursor: default;
+        }
+
+        .lightbox-content img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          border: 1px solid rgba(6, 255, 165, 0.2);
+          box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+          animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @keyframes scaleUp {
+          from { transform: scale(0.9); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
         }
 
         /* Card Content */
