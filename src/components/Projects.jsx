@@ -53,7 +53,7 @@ const ImageCarousel = ({ images, title, onImageClick }) => {
           />
         ))}
       </div>
-      
+
       {images.length > 1 && (
         <>
           <button className="carousel-btn prev" onClick={prevSlide} aria-label="Previous slide">
@@ -121,6 +121,57 @@ const CyberpunkProjects = () => {
       ],
       github: null,
       liveDemo: "https://oysaa-ng.com/",
+    },
+    {
+      id: 9,
+      title: "MedicFlow: Digitizing Healthcare",
+      description:
+        "A comprehensive Hospital Management System (HMS) for Oyo State public hospitals. Streamlines patient journeys, clinical workflows (Pharmacy, Lab, Radiology), logistics (Wards, Inventory), and financial operations with automated billing and revenue transparency dashboards.",
+      images: [
+        "/assets/images/medicflow-login.png",
+        "/assets/images/medicflow-dashboard.png",
+        "/assets/images/medicflow-payout-requests.png",
+        "/assets/images/medicflow-payout-management.png",
+      ],
+      category: "dev",
+      technologies: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Shadcn/UI",
+        "React Query",
+        "Chart.js",
+        "Axios",
+        "JWT",
+      ],
+      github: null,
+      liveDemo: "https://oyohmb.com/",
+    },
+    {
+      id: 10,
+      title: "Teemade Ecommerce: Minimalist Fashion",
+      description:
+        "A premium minimalist fashion platform featuring an immersive Lookbook (The Style Room), dynamic category browsing, and an enterprise-grade admin suite for inventory management and revenue analytics. Built with a focus on performance and superior user experience.",
+      images: [
+        "/assets/images/teemade-landing.png",
+        "/assets/images/teemade-admin.png",
+        "/assets/images/teemade-cart.png",
+        "/assets/images/teemade-profile.png",
+        "/assets/images/teemade-signout.png",
+      ],
+      category: "dev",
+      technologies: [
+        "Next.js 15",
+        "React 19",
+        "Tailwind CSS v4",
+        "Shadcn UI",
+        "Framer Motion",
+        "Zod",
+        "Recharts",
+      ],
+      github: null,
+      liveDemo: "https://teemade-eccommerce.vercel.app/",
     },
     {
       id: 1,
